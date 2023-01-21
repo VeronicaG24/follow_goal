@@ -10,7 +10,7 @@
 
 using namespace std;
 
-// global variables
+// global variables for number of goals reached and deleted, and position of the robot
 int reached, deleted;
 float x_pos, y_pos;
 
@@ -18,26 +18,48 @@ float x_pos, y_pos;
 ros::ServiceClient client;
 follow_goal::GoalNumber srv;
 
-// this function calls the custome service, and takes the number of goals
+
+/*###############################################
+# 
+# Calls the custom service
+# Print the number of goals reached and deleted
+# 
+################################################*/
 void get_number_goals() {
+
 	client.waitForExistence();
     	client.call(srv);
     	
-    	// peek reached goals
-    	reached=srv.response.reached;
+    	reached = srv.response.reached;
     	
-    	// peek eliminate goals
     	deleted=srv.response.deleted;
+    	
     	cout<<"\nNumber of reached goals: "<<reached<<"\nNumber of delated goals: "<<deleted<<"\n";
 }
 
-// this function takes and return the user input
+
+/*###############################################
+# 
+# Ask the user to choose an option from the menu
+# Get the answer and return it
+# 
+################################################*/
 int input_menu(char answer) {
-	cout<<"\n\n--------------------------------------------------------\nSelect an option:\n  1) Set goal coordinates\n  2) Delete current goal\n  3) Number of deleted or reached goal\n  4) Exit\nPress the number corresponding to the choosen option\n--------------------------------------------------------\n\n";
+
+	cout<<"\n\n--------------------------------------------------------\nSelect an option:\n  1) Set goal coordinates\n  2) Delete current goal\n  3) Number of deleted and reached goal\n  4) Exit\nPress the number corresponding to the choosen option\n--------------------------------------------------------\n\n";
+	
   	cin>>answer;
+  	
   	return answer;
 }
 
+
+/*###############################################
+# 
+# Ask the user to insert the coordinates of the
+# new goal
+# 
+################################################*/
 void ask_goal() {
 	cout<<"Set the x of the goal:\n";
 	cin>>x_pos;
@@ -47,24 +69,31 @@ void ask_goal() {
 }
 
 
+/*###############################################
+# 
+# Manage ROS init, NodeHandle, action client,
+# the menu and the option choosed
+# 
+################################################*/
 int main(int argc, char **argv) {
-	/* you must call one of the versions of ros::init() before using any other
-  	part of the ROS system. */
+
 	ros::init(argc, argv, "goal_set");
 	
 	// NodeHandle is the main access point to communications with the ROS system.
 	ros::NodeHandle n;
 	
-	// create the action client
+	// Action client creation
 	actionlib::SimpleActionClient<follow_goal::PlanningAction> ac("/reaching_goal", true);
-	
-	// take the state from the action client
+	// get the state from the action client
 	actionlib::SimpleClientGoalState state = ac.getState();
   	
+  	// variable for answer choosed by the user
   	char answer;
-  	int res;
-  	// variable stands for if a goal is set
+  	// varible to state if the goal is reached
+  	int succeed;
+  	// variable to state if a goal is set
   	int set_goal = 0;
+  	
   	follow_goal::PlanningGoal goal;
   	ROS_INFO("Waiting for action server to start.");
   	
@@ -75,60 +104,62 @@ int main(int argc, char **argv) {
 	while (ros::ok()) {
   		answer = input_menu(answer);
   		state = ac.getState();
-  		res = state.toString().compare("SUCCEEDED");
-  		if (res == 0 && set_goal)
+  		succeed = state.toString().compare("SUCCEEDED");
+  		
+  		if (succeed == 0 && set_goal)
   			set_goal--;
   		
   		switch(answer) {
-  		case '1':
-  			state = ac.getState();
-  			res = state.toString().compare("SUCCEEDED");
-  			if (set_goal && res != 0) {
-  				cout<<"You have to delete a goal before setting a new one\n";
-  			}
-  				
-  			if (res == 0 && set_goal) {
-  				set_goal--;
-  			}
-  			else if (!set_goal) {
-  				ask_goal();
-				goal.target_pose.pose.position.x=x_pos;
-				goal.target_pose.pose.position.y=y_pos;
-				ac.sendGoal(goal);
-				set_goal++;
-			}
-			sleep(1);
-			break;
-		case '2':
-			state = ac.getState();
-  			res = state.toString().compare("SUCCEEDED");
-			if (set_goal && res != 0) {
-				ac.cancelGoal();
-				cout<<"Goal deleted\n";
-				set_goal--;
-			}
-			else {
-				cout<<"\nNo goal to delete! Set a new one, or exit\n";
-			}
-			sleep(1);
-			break;
-		
-    		case '3':
-    			client = n.serviceClient<follow_goal::GoalNumber>("/result");
-    			get_number_goals();
-    			sleep(1);
-    			break;
-    			
-    		case '4':
-    			if (set_goal) {
-    				ac.cancelGoal();
-    			}
-    			exit(0);
-    			break;
-    		
-		default:
-			cout<<"\nMenu:\nChoose a number\n";
-			sleep(1);
+	  		case '1': //Set goal coordinates
+	  			state = ac.getState();
+	  			succeed = state.toString().compare("SUCCEEDED");
+	  			if (set_goal && succeed != 0) {
+	  				cout<<"You have to delete a goal before setting a new one\n";
+	  			}
+	  				
+	  			if (succeed == 0 && set_goal) {
+	  				set_goal--;
+	  			}
+	  			else if (!set_goal) {
+	  				ask_goal();
+					goal.target_pose.pose.position.x=x_pos;
+					goal.target_pose.pose.position.y=y_pos;
+					ac.sendGoal(goal);
+					set_goal++;
+				}
+				sleep(1);
+				break;
+				
+			case '2': // Delete current goal
+				state = ac.getState();
+	  			succeed = state.toString().compare("SUCCEEDED");
+				if (set_goal && succeed != 0) {
+					ac.cancelGoal();
+					cout<<"Goal deleted\n";
+					set_goal--;
+				}
+				else {
+					cout<<"\nNo goal to delete! Set a new one, or exit\n";
+				}
+				sleep(1);
+				break;
+			
+	    		case '3': // Number of deleted and reached goal
+	    			client = n.serviceClient<follow_goal::GoalNumber>("/result");
+	    			get_number_goals();
+	    			sleep(1);
+	    			break;
+	    			
+	    		case '4': // Exit
+	    			if (set_goal) {
+	    				ac.cancelGoal();
+	    			}
+	    			exit(0);
+	    			break;
+	    		
+			default:
+				cout<<"\nMenu:\nChoose a number\n";
+				sleep(1);
 		}
 			
 	}
