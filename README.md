@@ -92,7 +92,7 @@ The code is divided into separate functions:
 
 * `main(int argc, char **argv)`: manages ROS init, NodeHandle, action client, and the option choosed from the menu.
 
-```cpp
+```python
 define varible for choosed option
 define varible for number of succeed goals reached
 define variable to state if a goal is set, set to 0
