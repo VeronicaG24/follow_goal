@@ -76,8 +76,82 @@ As described before, four nodes have been developed in cpp language:
 3. `goal_count`: prints the number of goal reached and deleted
 4. `subscriber`: prints euclidian distance and average velocity
 
+**goal_set** node
+----------------------
 
+Global variables are defined at the start of the code:
 
+* `reached`: integer for number of goals reached
+* `deleted`: integer for number of goals deleted
+* `x_pos`: float for x-coordinate of the goal
+* `y_pos`: float for y-coordinate of the goal
+* `client`: instance for client
+* `srv`: instance for service
+
+The code is divided into separate functions:
+
+* `main(int argc, char **argv)`: manages ROS init, NodeHandle, action client, and the option choosed from the menu.
+
+```cpp
+define varible for choosed option
+define varible for number of succeed goals reached
+define variable to state if a goal is set, set to 0
+
+call ROS init function with arguments argc, argv, "goal_set";
+define NodeHandle;
+Create action client;
+get state from action client;
+call waiForService method
+
+while ROS is working:
+    call input_menu function
+    get the state of the action client
+    set state for setting goal as the comparison between "SUCCEEDED" and  the state of the action client
+
+    if the state of the action client is not 0 and the comparison returns 0:
+        decrease variable to state if the goal is set
+
+    switch in base of values of varible for choosed option:
+        case when = 1:
+            get the state from getState method;
+            compare "SUCCEEDED" and object state; 
+
+            if the comparison return 1 and a goal is set:
+                ask to delate the goal before setting a new one
+            
+            if the comparison return 0 and a goal is set
+                decrease variable to state if the goal is set;
+            else
+                call ask_goal() function;
+                set x coordinate of the goal;
+                set y coordinate of the goal;
+                send the goal to the action client;
+                increase variable to state if the goal is set;
+
+            wait 1 second;
+        case when = 2:
+            get the state from getState method;
+            compare "SUCCEEDED" and object state; 
+            
+            if the comparison return 1 and a goal is set:
+                cancel goal;
+                decrease variable to state if the goal is set;
+            else
+                ask to set a goal;
+
+            wait 1 second;
+        case when = 3:
+            get the number of delated and reached goal;
+            call get_number_goals() function;
+            wait 1 second;
+        case when = 4: 
+            if a goal is set:
+                cancel goal;
+            exit the program;
+        default case:
+            wait 1 second;
+
+```
 
 
 
