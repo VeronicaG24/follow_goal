@@ -85,15 +85,14 @@ int main(int argc, char **argv) {
   	
   	//init
 	ros::init(argc, argv, "goal_set");
-	
 	// NodeHandle is the main access point to communications with the ROS system.
 	ros::NodeHandle n;
-	
 	// Action client creation
 	actionlib::SimpleActionClient<follow_goal::PlanningAction> ac("/reaching_goal", true);
 	// get the state from the action client
 	actionlib::SimpleClientGoalState state = ac.getState();
-  	
+
+  	// get state from action client
   	follow_goal::PlanningGoal goal;
   	ROS_INFO("Waiting for action server to start.");
   	
