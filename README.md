@@ -1,11 +1,11 @@
 Second assignment
 ================================
-________________________________
 
 This is a possible implementation of the second assignment of Reaserch Track 1 couse. 
 
 The goal of this assignment is to familiarize with **ROS** by developing 3 (splitted into 4) nodes for specific 3D **Gazebo** and **Rviz** simulations.
 
+______________________
 Installing
 ----------------------
 ______________________
@@ -18,6 +18,7 @@ It is also necessary to create a workspace and named it `/my_ros`. You can find 
 
 How to run
 ----------------------
+______________________
 
 To launch the assignment is necessary to clone the GitHub repository using:
 
