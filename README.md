@@ -77,7 +77,7 @@ As described before, four nodes have been developed in cpp language:
 4. `subscriber`: prints euclidian distance and average velocity
 
 "goal_set" node
-----------------------
+__________________
 
 Global variables are defined at the start of the code:
 
@@ -188,7 +188,7 @@ ask for y coordinate;
 get the user anwer;
 ```
 
-**publisher** node
+"publisher" node
 ----------------------
 
 Global variables are defined at the start of the code:
@@ -238,7 +238,7 @@ assign to attribute `pos_vel.y_vel` the value of the variable `x_vel`;
 call publisher method for `pos_vel` object;
 ```
 
-**goal_count** node
+"goal_count" node
 ----------------------
 
 Global variables are defined at the start of the code:
@@ -287,7 +287,7 @@ else if `status` vales is equal to 2 (preemptive):
 
 ```
 
-**subscriber** node
+"subscriber" node
 ----------------------
 
 Global variables are defined at the start of the code:
@@ -360,5 +360,7 @@ print euclidian distance and average velocity;
 ```
 
 Possible improvements
--------------------------
+----------------------
+
+
 
