@@ -101,7 +101,7 @@ call ROS init function with arguments argc, argv, "goal_set";
 define NodeHandle;
 Create action client;
 get state from action client;
-call waiForService method
+call waitForService method
 
 while ROS is working:
     call input_menu function
