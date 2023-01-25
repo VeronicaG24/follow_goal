@@ -72,7 +72,8 @@ void get_dist_vel_from_goal() {
 # 
 ################################################*/
 int main(int argc, char **argv) {
-
+	
+	//init
 	ros::init(argc, argv, "subscriber_robot");
 	
 	//NodeHandle for main access point to communications with ROS system

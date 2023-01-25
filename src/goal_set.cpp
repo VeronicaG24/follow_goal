@@ -76,7 +76,14 @@ void ask_goal() {
 # 
 ################################################*/
 int main(int argc, char **argv) {
-
+	// variable for answer choosed by the user
+  	char answer;
+  	// varible to state if the goal is reached
+  	int succeed;
+  	// variable to state if a goal is set
+  	int set_goal = 0;
+  	
+  	//init
 	ros::init(argc, argv, "goal_set");
 	
 	// NodeHandle is the main access point to communications with the ROS system.
@@ -86,13 +93,6 @@ int main(int argc, char **argv) {
 	actionlib::SimpleActionClient<follow_goal::PlanningAction> ac("/reaching_goal", true);
 	// get the state from the action client
 	actionlib::SimpleClientGoalState state = ac.getState();
-  	
-  	// variable for answer choosed by the user
-  	char answer;
-  	// varible to state if the goal is reached
-  	int succeed;
-  	// variable to state if a goal is set
-  	int set_goal = 0;
   	
   	follow_goal::PlanningGoal goal;
   	ROS_INFO("Waiting for action server to start.");
