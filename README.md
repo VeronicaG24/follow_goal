@@ -40,13 +40,13 @@ launch assignment_2_2022 assignment1.launch
 Two windows of **Gazebo** and **Rviz** will be spawed:
 
 <table><tr>
-  <td> <img src="./Gazebo.png" alt="Drawing" style="width: 600px;"/> </td>
-  <td> <img src="./Rviz.png" alt="Drawing" style="width: 600px;"/> </td>
+    <td> <img src="./Rviz.png" alt="Drawing" style="width: 600px;"/> </td>
+    <td> <img src="./Gazebo.png" alt="Drawing" style="width: 600px;"/> </td>
 </tr>
 <tr>
-   <td>Gazebo window</td>
-   <td>Rviz window</td>
-  </tr>
+    <td>Rviz window</td>
+    <td>Gazebo window</td>
+</tr>
 </table>
 
 And then, from the other terminal, launch all the nodes:
