@@ -1,5 +1,6 @@
 Second assignment
 ================================
+________________________________
 
 This is a possible implementation of the second assignment of Reaserch Track 1 couse. 
 
@@ -7,6 +8,7 @@ The goal of this assignment is to familiarize with **ROS** by developing 3 (spli
 
 Installing
 ----------------------
+______________________
 
 To run this assignment it is necessary to have **ROS noetic** version installed. The simplest way is to have the [**Docker**](https://docs.docker.com/get-docker/) and then follow this [**ROS guide**](http://wiki.ros.org/ROS/Installation).
 
@@ -57,6 +59,7 @@ launch follow_goal follow_goal.launch
 
 Requirements
 ----------------------
+______________________
 
 The code is designed to respect the following requirements:
 
@@ -69,6 +72,7 @@ The code is designed to respect the following requirements:
 
 Description of the code
 ----------------------
+______________________
 
 As described before, four nodes have been developed in cpp language:
 1. `goal_set`: to set goal coordinates
@@ -77,7 +81,7 @@ As described before, four nodes have been developed in cpp language:
 4. `subscriber`: prints euclidian distance and average velocity
 
 "goal_set" node
-__________________
+----------------------
 
 Global variables are defined at the start of the code:
 
