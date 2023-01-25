@@ -5,10 +5,8 @@ This is a possible implementation of the second assignment of Reaserch Track 1 c
 
 The goal of this assignment is to familiarize with **ROS** by developing 3 (splitted into 4) nodes for specific 3D **Gazebo** and **Rviz** simulations.
 
-______________________
 Installing
 ----------------------
-______________________
 
 To run this assignment it is necessary to have **ROS noetic** version installed. The simplest way is to have the [**Docker**](https://docs.docker.com/get-docker/) and then follow this [**ROS guide**](http://wiki.ros.org/ROS/Installation).
 
@@ -18,7 +16,6 @@ It is also necessary to create a workspace and named it `/my_ros`. You can find 
 
 How to run
 ----------------------
-______________________
 
 To launch the assignment is necessary to clone the GitHub repository using:
 
@@ -60,7 +57,6 @@ launch follow_goal follow_goal.launch
 
 Requirements
 ----------------------
-______________________
 
 The code is designed to respect the following requirements:
 
@@ -73,7 +69,6 @@ The code is designed to respect the following requirements:
 
 Description of the code
 ----------------------
-______________________
 
 As described before, four nodes have been developed in cpp language:
 1. `goal_set`: to set goal coordinates
