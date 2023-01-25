@@ -34,7 +34,7 @@ Now, open two different terminal windows and move into `/my_ros` workspace.
 In the first terminal, launch **Gazebo** and **Rviz** simulations using  the following command:
 
 ```bash
-launch assignment_2_2022 assignment1.launch
+roslaunch assignment_2_2022 assignment1.launch
 ```
 
 Two windows of **Gazebo** and **Rviz** will be spawed:
@@ -52,7 +52,7 @@ Two windows of **Gazebo** and **Rviz** will be spawed:
 And then, from the other terminal, launch all the nodes:
 
 ```bash
-launch follow_goal follow_goal.launch
+roslaunch follow_goal follow_goal.launch
 ```
 
 Requirements

@@ -48,6 +48,7 @@ void pos_vel_callback(const nav_msgs::Odometry::ConstPtr& msg) {
 ################################################*/
 int main(int argc, char **argv) {
 	
+	//init
 	ros::init(argc, argv, "publisher_robot");
 	
 	//NodeHandle for main access point to communications with ROS system

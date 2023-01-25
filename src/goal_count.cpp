@@ -49,7 +49,8 @@ void count_reach_delete_callback(const assignment_2_2022::PlanningActionResult::
 # 
 ##############################################*/
 int main (int argc, char** argv) {
-
+	
+	//init
 	ros::init(argc, argv, "goal_count");
 	
 	// NodeHandle is the main access point to communications with the ROS system
