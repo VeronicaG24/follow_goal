@@ -76,7 +76,7 @@ As described before, four nodes have been developed in cpp language:
 3. `goal_count`: prints the number of goal reached and deleted
 4. `subscriber`: prints euclidian distance and average velocity
 
-**goal_set** node
+"goal_set" node
 ----------------------
 
 Global variables are defined at the start of the code:
