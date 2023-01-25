@@ -362,5 +362,16 @@ print euclidian distance and average velocity;
 Possible improvements
 ----------------------
 
+Some improvements could be implemented due to avoid some critical situations:
 
+* For the **client-side**, it is possible to improve it:
+    * by closing all four terminal windows when the user chooses the "exit" option from the menu
+    * by managing when the robot is stacked and it cannot reach the goal, by asking the user to change the goal. For example with the addition of a timer that when it is end and the distance from the goal is always the same, it asks to change the goal
+
+* For the **server-side**, it is possible to add some improvements as:
+    * manage the robot trajectory when it is stacked in a corner and it cannot move anymore, and the user needs to re-run the simulation.
+    * add the showing goal position when the user chooses one, for example with a red cross on Gazebo environment.
+
+
+  
 
